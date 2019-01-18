@@ -439,10 +439,11 @@ gru_errors = gru.error_df()
 gru.visualization(test_visualization = False)
 gru.visualization(test_visualization = True)
     
-# Save the predictions and errors    
+# Save the predictions    
 errors = simple_rnn_errors.append([lstm_errors, gru_errors]).reset_index(drop = True)
 errors.to_csv(r'output/rnn_errors_' + str(Scenario[2]) + '.csv', sep = ';')
 
+# Save the errors
 outofsample_predictions = pd.concat([pd.Series(test_Y), rnn_test_prediction, lstm_test_prediction, gru_test_prediction], axis = 1).reset_index(drop = True)
 outofsample_predictions.columns = ['DAILY_RV', 'SRN', 'LSTM', 'GRU']
 outofsample_predictions.to_csv(r'output/rnn_outofsample_predictions_' + str(Scenario[2]) + '.csv', sep = ';')
