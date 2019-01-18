@@ -1,0 +1,16 @@
+
+Name of Quantlet: RVOLprep
+
+Published in: Master thesis
+
+Description: imports the raw data from six cryptocurrencies, builds a price weighted portfolio from all of them and calculated log returns and realized volatility. Additionally, it gives more information about the data with some graphs and descriptive statitstics. 
+
+Keywords: cryptocurrency, returns, RV, realized, volatility, price, weighted, portfolio
+
+Author: Ivan Mitkov
+
+Submitted:  Fri, January 11 2019 by Ivan Mitkov
+
+Datafile: price_btc_eth_ltc_str_xmr_xrp_20160101_20180831.p
+
+Output: crypto_price_evolution.png, portfolio_daily_logreturns.png, portfolio_prices.png
