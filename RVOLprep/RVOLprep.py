@@ -146,5 +146,5 @@ def log_returns(series, dateseries):
 # Apply log returns on both data frames    
 result = log_returns(series = data['PORTFOLIO'], dateseries = data['DATE'])
              
-# Saving the prepared data
+# Saving the prepared data for further analysis
 result.to_csv(r'raw_data_prepared.csv', index = False, sep = ';')
