@@ -8,6 +8,7 @@ Created on Tue Oct 23 19:30:57 2018
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.filterwarnings('ignore')
+import pickle
 from scipy.stats import kurtosis
 from scipy.stats import skew
 from scipy.stats import jarque_bera

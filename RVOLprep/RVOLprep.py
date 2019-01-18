@@ -19,9 +19,14 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Import of packages, set wordking directiory
 import os
-os.chdir(r'/Users/ivanmitkov/Desktop/repository/quantlets/RVOLprep')
+
+# Please note that the code works without any errors only if you run the whole script at once
+os.chdir(os.path.dirname(__file__))
+
+# If you run partial codes then you have to replace manually the working directory with your path
+# os.chdir(r'/hier/comes/your/path/link')
+
 from dalib.packages import *
-import pickle
 data = pickle.load(open('data/price_btc_eth_ltc_str_xmr_xrp_20160101_20180831.p', "rb"))
 
 # Selecting only the "open" prices

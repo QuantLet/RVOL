@@ -212,9 +212,16 @@ class har_fnn(object):
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-# Import of packages, set wordking directiory
-import os, sys
-os.chdir(r'/Users/ivanmitkov/Desktop/repository/quantlets/RVOLharfnn')
+# Set wordking directiory
+import os
+
+# Please note that the code works without any errors only if you run the whole script at once
+os.chdir(os.path.dirname(__file__))
+
+# If you run partial codes then you have to replace manually the working directory with your path
+# os.chdir(r'/hier/comes/your/path/link')
+
+# Impot of packages
 from dalib.packages import *
 
 # In order to keep constant outputs, avoiding different weights initialization
