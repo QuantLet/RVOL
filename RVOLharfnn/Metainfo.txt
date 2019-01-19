@@ -13,4 +13,12 @@ Submitted: Fri, January 11 2019 by Ivan Mitkov
 
 Datafile: raw_data.csv
 
-Output: harfnn_errors_high_vol_long.csv, harfnn_errors_high_vol_short.csv, harfnn_errors_low_vol_long.csv, harfnn_errors_low_vol_short.csv, harfnn_outofsample_predictions_high_vol_long.csv, harfnn_outofsample_predictions_high_vol_short.csv, harfnn_outofsample_predictions_low_vol_long.csv, harfnn_outofsample_predictions_low_vol_short.csv
+Output: 
+- harfnn_errors_high_vol_long.csv, 
+- harfnn_errors_high_vol_short.csv, 
+- harfnn_errors_low_vol_long.csv, 
+- harfnn_errors_low_vol_short.csv, 
+- harfnn_outofsample_predictions_high_vol_long.csv,
+- harfnn_outofsample_predictions_high_vol_short.csv,
+- harfnn_outofsample_predictions_low_vol_long.csv,
+- harfnn_outofsample_predictions_low_vol_short.csv

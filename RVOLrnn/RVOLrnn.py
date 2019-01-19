@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 10 14:39:15 2018
-
-@author: ivanmitkov
-"""
 
 # Import the required moduldes 
 

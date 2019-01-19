@@ -11,6 +11,12 @@ Author: Ivan Mitkov
 
 Submitted: Fri, January 11 2019 by Ivan Mitkov
 
-Datafile: forecasts_high_vol.csv, forecasts_low_vol.csv
+Datafile: 
+- forecasts_high_vol.csv, 
+- forecasts_low_vol.csv
 
-Output: VaR_plot_high_005.png, VaR_plot_high_010.png, VaR_plot_low_005.png, VaR_plot_low_010.png
+Output: 
+- VaR_plot_high_005.png, 
+- VaR_plot_high_010.png, 
+- VaR_plot_low_005.png, 
+- VaR_plot_low_010.png

@@ -1,18 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Dec 20 12:18:52 2018
-
-@author: ivanmitkov
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 24 18:36:59 2018
-
-@author: ivanmitkov
-"""
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)

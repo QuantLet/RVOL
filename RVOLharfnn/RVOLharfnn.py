@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 24 18:37:02 2018
-
-@author: ivanmitkov
-"""
 
 def train_test_data(dataframe, fraction, RNN):
     import pandas as pd

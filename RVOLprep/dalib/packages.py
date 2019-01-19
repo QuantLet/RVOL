@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 23 19:30:57 2018
 
-@author: ivanmitkov
-"""
+# Make sure that all of the modules are already installed in Anaconda
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.filterwarnings('ignore')
@@ -31,8 +28,6 @@ from numpy.random import normal
 from statsmodels.stats.diagnostic import *
 from pyramid.arima import auto_arima
 from arch import arch_model
-
-# Neural Netowrks
 import math
 from keras.layers import *
 from sklearn.preprocessing import MinMaxScaler

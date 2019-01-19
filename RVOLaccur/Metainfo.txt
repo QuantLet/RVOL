@@ -11,6 +11,18 @@ Author: Ivan Mitkov
 
 Submitted:  Fri, January 11 2019 by Ivan Mitkov
 
-Datafile: rnn_outofsample_predictions_high_vol_long.csv, rnn_outofsample_predictions_high_vol_short.csv, rnn_outofsample_predictions_low_vol_long.csv, rnn_outofsample_predictions_low_vol_short.csv, harfnn_outofsample_predictions_high_vol_long.csv, harfnn_outofsample_predictions_high_vol_short.csv, harfnn_outofsample_predictions_low_vol_long.csv, harfnn_outofsample_predictions_low_vol_short.csv
+Datafile: 
+- rnn_outofsample_predictions_high_vol_long.csv,
+- rnn_outofsample_predictions_high_vol_short.csv,
+- rnn_outofsample_predictions_low_vol_long.csv,
+- rnn_outofsample_predictions_low_vol_short.csv,
+- harfnn_outofsample_predictions_high_vol_long.csv,
+- harfnn_outofsample_predictions_high_vol_short.csv,
+- harfnn_outofsample_predictions_low_vol_long.csv,
+- harfnn_outofsample_predictions_low_vol_short.csv
 
-Output: high_volatility_long.png, high_volatility_short.png, low_volatility_long.png, low_volatility_short.png
+Output: 
+- high_volatility_long.png,
+- high_volatility_short.png,
+- low_volatility_long.png,
+- low_volatility_short.png

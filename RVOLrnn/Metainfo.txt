@@ -13,4 +13,12 @@ Submitted:  Fri, January 11 2019 by Ivan Mitkov
 
 Datafile: raw_data.csv
 
-Output: rnn_errors_high_vol_long.csv, rnn_errors_high_vol_short.csv, rnn_errors_low_vol_long.csv, rnn_errors_low_vol_short.csv, rnn_outofsample_predictions_high_vol_long.csv, rnn_outofsample_predictions_high_vol_short.csv, rnn_outofsample_predictions_low_vol_long.csv, rnn_outofsample_predictions_low_vol_short.csv
+Output: 
+- rnn_errors_high_vol_long.csv, 
+- rnn_errors_high_vol_short.csv, 
+- rnn_errors_low_vol_long.csv, 
+- rnn_errors_low_vol_short.csv, 
+- rnn_outofsample_predictions_high_vol_long.csv,
+- rnn_outofsample_predictions_high_vol_short.csv,
+- rnn_outofsample_predictions_low_vol_long.csv,
+- rnn_outofsample_predictions_low_vol_short.csv
