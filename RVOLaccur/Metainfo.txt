@@ -3,7 +3,7 @@ Name of Quantlet: RVOLaccur
 
 Published in: Master thesis
 
-Description: checks the predicting accuracy of various models through Diebold Mariano tests. All forecasts are plotted next to the target value as well. 
+Description: 'Checks the predicting accuracy of various models through Diebold Mariano tests.' 
 
 Keywords: cryptocurrency, RNN, LSTM, GRU, DM, test, Diebold, Mariano, HAR, FNN
 

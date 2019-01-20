@@ -3,7 +3,7 @@ Name of Quantlet: RVOLrnn
 
 Published in: Master thesis
 
-Description: forecasts the realized volatility of a portfolio from cryptocurrencies by the means of recurrent neural networks
+Description: 'Forecasts the realized volatility of a portfolio from cryptocurrencies through of RNNs.'
 
 Keywords: cryptocurrency, RNN, LSTM, GRU, neural, network
 
