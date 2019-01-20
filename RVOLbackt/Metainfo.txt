@@ -7,7 +7,7 @@ Description: 'Backests if the realized volatility is a good approach for Value a
 	      Backtesting algorithms like unconditional convergence test (Kupiec test)
               and conditional convergence test (Christoffersen test) are applied.'
 
-Keywords: cryptocurrency, RV, realized, volatility, VaR, backtests, backtesting, Kupiec, Christoffersen, value, risk
+Keywords: 'cryptocurrency, RV, realized, volatility, VaR, backtests, backtesting, Kupiec, Christoffersen, value, risk'
 
 Author: Ivan Mitkov
 

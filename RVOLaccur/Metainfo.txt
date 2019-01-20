@@ -5,7 +5,7 @@ Published in: Master thesis
 
 Description: 'Checks the predicting accuracy of various models through Diebold Mariano tests.' 
 
-Keywords: cryptocurrency, RNN, LSTM, GRU, DM, test, Diebold, Mariano, HAR, FNN
+Keywords: 'cryptocurrency, RNN, LSTM, GRU, DM, test, Diebold, Mariano, HAR, FNN'
 
 Author: Ivan Mitkov
 

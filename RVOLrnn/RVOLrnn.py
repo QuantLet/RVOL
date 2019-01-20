@@ -11,6 +11,26 @@ import numpy
 from numpy.random import seed
 seed(1)
 
+"""
+!!!
+
+Please note that running the whole code at once, would automatically lead to consideration only of 
+the short case in low volatility times. In order to run the other cases, you should:
+    
+    1. Set your working directory
+    
+import os
+os.chdir(r'/hier/comes/your/path/RVOLrnn')
+
+    2. Select a scenario. For more info and the exact selection see lines 245-263.
+        > Scenario high volatiolity time, longer training
+        > Scenario high volatiolity time, short training
+        > Scenario low volatiolity time, longer training
+        > Scenario low volatiolity time, shor training
+
+This inconvenience is done in order to avoid loops but also to reduce the length of the script.
+"""
+
 def train_test_data(dataframe, fraction, RNN):
     import pandas as pd
     import numpy as np
@@ -68,125 +88,6 @@ class Neural_Networks(object):
         self.nn_inputs = nn_inputs 
         self.output = 1 
         self.time_steps = 1
-
-    def nn_grid_params(self, dict_models, learning_rate, n_epochs, batch_size):
-        """
-        The function makes a grid search over the hyperparameters for a Simple Recurrent Neural Network.
-        """
-        import pandas as pd
-        import numpy as np
-        from keras.layers import SimpleRNN
-        from keras.layers import LSTM
-        from keras.layers import GRU        
-        from keras.layers import Dense
-        from keras.models import Sequential
-        from keras.layers import LeakyReLU
-        from keras import optimizers
-        import math
-        from sklearn.metrics import mean_squared_error
-        
-        
-        if self.NN_type == 'SimpleRNN':
-            result = pd.DataFrame()    
-            for i in list(dict_models.keys()):
-                model = Sequential()
-                if dict_models[i]['n_layers'] == 1:
-                    model.add(SimpleRNN(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), activation = dict_models[i]['activ_funct']))
-                else:
-                    model.add(SimpleRNN(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), return_sequences = True, activation = dict_models[i]['activ_funct']))
-                for j in range(2, dict_models[i]['n_layers'] + 1):
-                    if j < dict_models[i]['n_layers']:
-                        model.add(SimpleRNN(dict_models[i]['n_units'][j-1], return_sequences = True, activation = dict_models[i]['activ_funct']))
-                    else:
-                        model.add(SimpleRNN(dict_models[i]['n_units'][len(dict_models[i]['n_units'])-1], return_sequences = False, activation = dict_models[i]['activ_funct']))
-                
-                model.add(Dense(self.output))
-                
-                for rate in learning_rate:
-                    adam = optimizers.adam(lr = rate)
-                    model.compile(loss='mse', optimizer='adam')
-                    
-                    for epoch in n_epochs:
-                        for size in batch_size:
-                            model.fit(self.train_X, self.train_Y, epochs = epoch, batch_size = size, verbose = 1)
-                            grid = pd.DataFrame()
-                            grid['MODEL'] = [(i)]
-                            grid['LAYERS'] = [(dict_models[i]['n_layers'])]
-                            grid['NEURONS'] = [(dict_models[i]['n_units'])]
-                            grid['RATE'] = rate
-                            grid['SIZE'] = size
-                            grid['MSE'] = model.evaluate(self.train_X, self.train_Y, verbose=0)
-                            result = result.append(grid).reset_index(drop = True)
-            result.sort_values(by=['MSE'], inplace = True)                
-            print(result[:5])
-            
-        if self.NN_type == 'LSTM':
-            result = pd.DataFrame()                
-            for i in list(dict_models.keys()):
-                model = Sequential()
-                if dict_models[i]['n_layers'] == 1:
-                    model.add(LSTM(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), activation = dict_models[i]['activ_funct']))
-                else:
-                    model.add(LSTM(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), return_sequences = True, activation = dict_models[i]['activ_funct']))
-                for j in range(2, dict_models[i]['n_layers'] + 1):
-                    if j < dict_models[i]['n_layers']:
-                        model.add(LSTM(dict_models[i]['n_units'][j-1], return_sequences = True, activation = dict_models[i]['activ_funct']))
-                    else:
-                        model.add(LSTM(dict_models[i]['n_units'][len(dict_models[i]['n_units'])-1], return_sequences = False, activation = dict_models[i]['activ_funct']))
-                
-                model.add(Dense(self.output))
-                
-                for rate in learning_rate:
-                    adam = optimizers.adam(lr = rate)
-                    model.compile(loss='mse', optimizer='adam')
-                    
-                    for epoch in n_epochs:
-                        for size in batch_size:
-                            model.fit(self.train_X, self.train_Y, epochs = epoch, batch_size = size, verbose = 0)
-                            grid = pd.DataFrame()
-                            grid['MODEL'] = [(i)]
-                            grid['LAYERS'] = [(dict_models[i]['n_layers'])]
-                            grid['NEURONS'] = [(dict_models[i]['n_units'])]
-                            grid['RATE'] = rate
-                            grid['SIZE'] = size
-                            grid['MSE'] = model.evaluate(self.train_X, self.train_Y, verbose=0)
-                            result = result.append(grid).reset_index(drop = True)
-            result.sort_values(by=['MSE'], inplace = True)
-            print(result[:5])     
-        
-        if self.NN_type == 'GRU':
-            result = pd.DataFrame()
-            for i in list(dict_models.keys()):
-                model = Sequential()
-                if dict_models[i]['n_layers'] == 1:
-                    model.add(GRU(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), activation = dict_models[i]['activ_funct']))
-                else:
-                    model.add(GRU(dict_models[i]['n_units'][0], input_shape=(self.time_steps, self.nn_inputs), return_sequences = True, activation = dict_models[i]['activ_funct']))
-                for j in range(2, dict_models[i]['n_layers'] + 1):
-                    if j < dict_models[i]['n_layers']:
-                        model.add(GRU(dict_models[i]['n_units'][j-1], return_sequences = True, activation = dict_models[i]['activ_funct']))
-                    else:
-                        model.add(GRU(dict_models[i]['n_units'][len(dict_models[i]['n_units'])-1], return_sequences = False, activation = dict_models[i]['activ_funct']))
-                
-                model.add(Dense(self.output))
-                
-                for rate in learning_rate:
-                    adam = optimizers.adam(lr = rate)
-                    model.compile(loss='mse', optimizer='adam')
-                    
-                    for epoch in n_epochs:
-                        for size in batch_size:
-                            model.fit(self.train_X, self.train_Y, epochs = epoch, batch_size = size, verbose = 0)
-                            grid = pd.DataFrame()
-                            grid['MODEL'] = [(i)]
-                            grid['LAYERS'] = [(dict_models[i]['n_layers'])]
-                            grid['NEURONS'] = [(dict_models[i]['n_units'])]
-                            grid['RATE'] = rate
-                            grid['SIZE'] = size
-                            grid['MSE'] = model.evaluate(self.train_X, self.train_Y, verbose=0)
-                            result = result.append(grid).reset_index(drop = True)
-            result.sort_values(by=['MSE'], inplace = True)                
-            print(result[:5])
         
     def create_nn(self, n_layers, n_units, n_epochs, batch_size, activ_funct, learning_rate):
         from keras import optimizers
@@ -329,10 +230,11 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Please note that the code works without any errors only if you run the whole script at once
+import os
 os.chdir(os.path.dirname(__file__))
 
 # If you run partial codes then you have to replace manually the working directory with your path
-# os.chdir(r'/hier/comes/your/path/link')
+# os.chdir(r'/hier/comes/your/path/RVOLrnn')
 
 # Import of packages
 from dalib.packages import *

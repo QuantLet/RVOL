@@ -5,7 +5,7 @@ Published in: Master thesis
 
 Description: 'Forecasts the realized volatility of a portfolio from cryptocurrencies through of RNNs.'
 
-Keywords: cryptocurrency, RNN, LSTM, GRU, neural, network
+Keywords: 'cryptocurrency, RNN, LSTM, GRU, neural, network'
 
 Author: Ivan Mitkov
 

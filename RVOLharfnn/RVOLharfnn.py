@@ -238,11 +238,135 @@ Please note that for at our empirical work we consider four different time perio
 dates = [('2017-10-01', '2018-01-01', 'high_vol_long'), ('2017-11-01', '2017-12-01', 'high_vol_short'), 
          ('2018-04-15', '2018-07-15', 'low_vol_long'), ('2018-05-15', '2018-06-15', 'low_vol_short')]
 
-# Choose which scenario
-Scenario = [dates[0][0], dates[0][1], dates[0][2]] # Scenario high volatiolity time, longer training
-Scenario = [dates[1][0], dates[1][1], dates[1][2]] # Scenario high volatiolity time, short training
-Scenario = [dates[2][0], dates[2][1], dates[2][2]] # Scenario low volatiolity time, longer training
-Scenario = [dates[3][0], dates[3][1], dates[3][2]] # Scenario low volatiolity time, shor training
+
+# # Scenario high volatiolity time, longer training
+Scenario = [dates[0][0], dates[0][1], dates[0][2]] 
+
+# Import data
+df = pd.read_csv(r'data/raw_data.csv', sep = ';')
+df = df[(df['DATE'] > Scenario[0]) & (df['DATE'] < Scenario[1])].reset_index(drop = True)
+
+# Train-Test-Data
+train_X, train_Y, test_X, test_Y = train_test_data(dataframe = df, 
+                                                   fraction = 0.8,
+                                                   RNN = False)
+
+# Naïve model
+NAIVE_train = df['NAIVE'][(test_Y.shape[0]):].reset_index(drop = True)
+NAIVE_test = df['NAIVE'].tail(test_Y.shape[0]).reset_index(drop = True)
+NAIVE_errors = naive_erros(train_Y = train_Y, test_Y = test_Y, NAIVE_train = NAIVE_train, NAIVE_test = NAIVE_test)
+
+# HAR-RV
+har = har_fnn('HAR-RV', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+har.train()
+predicted_train_Y_HAR, predicted_test_Y_HAR = har.predict()
+har.evaluate(train = True, test = True)
+har_errors = har.error_df()
+
+# FNN-HAR
+fnn_har = har_fnn('FNN-ANN', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+fnn_har.train()
+predicted_train_Y_FNN, predicted_test_Y_FNN = fnn_har.predict()
+fnn_har.evaluate(train = True, test = True)
+fnn_har_errors = fnn_har.error_df()
+
+
+# Save the predictions and errors
+errors_naive_har_fnn = NAIVE_errors.append([har_errors, fnn_har_errors]).reset_index(drop = True)
+errors_naive_har_fnn.to_csv(r'output/harfnn_errors_' + str(Scenario[2]) + '.csv', sep = ';')
+
+outofsample_predictions = pd.concat([pd.Series(test_Y), NAIVE_test, predicted_test_Y_HAR, predicted_test_Y_FNN], axis = 1).reset_index(drop = True)
+outofsample_predictions.columns = ['DAILY_RV', 'NAIVE', 'HAR', 'FNN-HAR']
+outofsample_predictions.to_csv(r'output/harfnn_outofsample_predictions_' + str(Scenario[2]) + '.csv', sep = ';')
+
+
+
+# # Scenario high volatiolity time, shorter training
+Scenario = [dates[1][0], dates[1][1], dates[1][2]] # Scenario high volatiolity time, longer training
+
+# Import data
+df = pd.read_csv(r'data/raw_data.csv', sep = ';')
+df = df[(df['DATE'] > Scenario[0]) & (df['DATE'] < Scenario[1])].reset_index(drop = True)
+
+# Train-Test-Data
+train_X, train_Y, test_X, test_Y = train_test_data(dataframe = df, 
+                                                   fraction = 0.8,
+                                                   RNN = False)
+
+# Naïve model
+NAIVE_train = df['NAIVE'][(test_Y.shape[0]):].reset_index(drop = True)
+NAIVE_test = df['NAIVE'].tail(test_Y.shape[0]).reset_index(drop = True)
+NAIVE_errors = naive_erros(train_Y = train_Y, test_Y = test_Y, NAIVE_train = NAIVE_train, NAIVE_test = NAIVE_test)
+
+# HAR-RV
+har = har_fnn('HAR-RV', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+har.train()
+predicted_train_Y_HAR, predicted_test_Y_HAR = har.predict()
+har.evaluate(train = True, test = True)
+har_errors = har.error_df()
+
+# FNN-HAR
+fnn_har = har_fnn('FNN-ANN', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+fnn_har.train()
+predicted_train_Y_FNN, predicted_test_Y_FNN = fnn_har.predict()
+fnn_har.evaluate(train = True, test = True)
+fnn_har_errors = fnn_har.error_df()
+
+
+# Save the predictions and errors
+errors_naive_har_fnn = NAIVE_errors.append([har_errors, fnn_har_errors]).reset_index(drop = True)
+errors_naive_har_fnn.to_csv(r'output/harfnn_errors_' + str(Scenario[2]) + '.csv', sep = ';')
+
+outofsample_predictions = pd.concat([pd.Series(test_Y), NAIVE_test, predicted_test_Y_HAR, predicted_test_Y_FNN], axis = 1).reset_index(drop = True)
+outofsample_predictions.columns = ['DAILY_RV', 'NAIVE', 'HAR', 'FNN-HAR']
+outofsample_predictions.to_csv(r'output/harfnn_outofsample_predictions_' + str(Scenario[2]) + '.csv', sep = ';')
+
+
+
+# # Scenario low volatiolity time, longer training
+Scenario = [dates[2][0], dates[2][1], dates[2][2]] 
+
+# Import data
+df = pd.read_csv(r'data/raw_data.csv', sep = ';')
+df = df[(df['DATE'] > Scenario[0]) & (df['DATE'] < Scenario[1])].reset_index(drop = True)
+
+# Train-Test-Data
+train_X, train_Y, test_X, test_Y = train_test_data(dataframe = df, 
+                                                   fraction = 0.8,
+                                                   RNN = False)
+
+# Naïve model
+NAIVE_train = df['NAIVE'][(test_Y.shape[0]):].reset_index(drop = True)
+NAIVE_test = df['NAIVE'].tail(test_Y.shape[0]).reset_index(drop = True)
+NAIVE_errors = naive_erros(train_Y = train_Y, test_Y = test_Y, NAIVE_train = NAIVE_train, NAIVE_test = NAIVE_test)
+
+# HAR-RV
+har = har_fnn('HAR-RV', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+har.train()
+predicted_train_Y_HAR, predicted_test_Y_HAR = har.predict()
+har.evaluate(train = True, test = True)
+har_errors = har.error_df()
+
+# FNN-HAR
+fnn_har = har_fnn('FNN-ANN', trainX = train_X, trainY = train_Y, testX = test_X, testY = test_Y)
+fnn_har.train()
+predicted_train_Y_FNN, predicted_test_Y_FNN = fnn_har.predict()
+fnn_har.evaluate(train = True, test = True)
+fnn_har_errors = fnn_har.error_df()
+
+
+# Save the predictions and errors
+errors_naive_har_fnn = NAIVE_errors.append([har_errors, fnn_har_errors]).reset_index(drop = True)
+errors_naive_har_fnn.to_csv(r'output/harfnn_errors_' + str(Scenario[2]) + '.csv', sep = ';')
+
+outofsample_predictions = pd.concat([pd.Series(test_Y), NAIVE_test, predicted_test_Y_HAR, predicted_test_Y_FNN], axis = 1).reset_index(drop = True)
+outofsample_predictions.columns = ['DAILY_RV', 'NAIVE', 'HAR', 'FNN-HAR']
+outofsample_predictions.to_csv(r'output/harfnn_outofsample_predictions_' + str(Scenario[2]) + '.csv', sep = ';')
+
+
+
+# # Scenario low volatiolity time, shorter training
+Scenario = [dates[3][0], dates[3][1], dates[3][2]] # Scenario high volatiolity time, longer training
 
 # Import data
 df = pd.read_csv(r'data/raw_data.csv', sep = ';')
