@@ -8,6 +8,7 @@ warnings.filterwarnings('ignore')
 # Make sure that all of the modules are already installed in Anaconda. If not, 
 # the following comands should be ran in Terminal
 """
+pip install pickle
 pip install pandas
 pip install matplotlib
 pip install numpy
@@ -21,8 +22,11 @@ pip install -U scikit-learn
 """
 
 # Improting the packages
+import pickle
+
 import pandas as pd
 from pandas import Series
+
 
 import matplotlib.pyplot as plt 
 import numpy as np
@@ -36,8 +40,13 @@ from statsmodels.stats.diagnostic import *
 import itertools
 import sys
 import pylab 
+
 import scipy.stats as stats
-from scipy.stats import norm                                                  
+from scipy.stats import kurtosis
+from scipy.stats import skew
+from scipy.stats import norm
+from scipy.stats import jarque_bera
+                                                  
 from numpy.random import normal
 import math
 
