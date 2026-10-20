@@ -9,7 +9,7 @@ Name of Quantlet: RVOLbackt
 
 Published in: Master thesis
 
-Description: Backests if the realized volatility is a good approach for Value at Risk.
+Description: Backests if the realized volatility is a good approach for Value at Risk. Backtesting algorithms like unconditional convergence test (Kupiec test) and conditional convergence test (Christoffersen test) are applied.
 
 Keywords: cryptocurrency, RV, realized, volatility, VaR, backtests, backtesting, Kupiec, Christoffersen, value, risk
 
