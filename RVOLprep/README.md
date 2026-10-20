@@ -9,7 +9,7 @@ Name of Quantlet: RVOLprep
 
 Published in: Master thesis
 
-Description: Imports the raw data from six cryptocurrencies, builds a price weighted portfolio from
+Description: Imports the raw data from six cryptocurrencies, builds a price weighted portfolio from all of them and calculated log returns and realized volatility. Additionally, it gives more information about the data with some graphs and descriptive statistics.
 
 Keywords: cryptocurrency, returns, RV, realized, volatility, price, weighted, portfolio
 
