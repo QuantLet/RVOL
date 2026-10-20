@@ -9,7 +9,7 @@ Name of Quantlet: RVOLharfnn
 
 Published in: Master thesis
 
-Description: Forecasts the realized volatility of a portfolio from cryptocurrencies by the means
+Description: Forecasts the realized volatility of a portfolio from cryptocurrencies by the means of the Heterogeneous autoregressive (HAR) model and a hybrid between HAR and a simple feedforward neural network (FNN-HAR).
 
 Keywords: cryptocurrency, RV, HAR, FNN, realized, volatility
 
